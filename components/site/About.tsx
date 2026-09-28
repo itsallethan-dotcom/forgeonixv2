@@ -24,7 +24,7 @@ export function About() {
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-16">
         <div>
           <SectionHead
-            index="03"
+            index="08"
             label="About"
             titleId="about-title"
             title="Experience from both sides of the screen."

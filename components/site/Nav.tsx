@@ -6,8 +6,9 @@ import { Wordmark } from "@/components/ui/Mark";
 
 const LINKS = [
   { href: "#solutions", label: "Solutions" },
-  { href: "#process", label: "Process" },
-  { href: "#about", label: "About" },
+  { href: "#work", label: "Work" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#support", label: "Support" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -23,6 +24,9 @@ export function Nav() {
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
+  // Hydration guard: the mobile menu button/panel must not render until after
+  // mount so SSR and first client render match. Intentional one-shot setState.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {

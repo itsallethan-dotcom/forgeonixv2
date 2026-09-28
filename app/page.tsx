@@ -1,7 +1,11 @@
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
-import { Solutions } from "@/components/site/Solutions";
-import { Delivered } from "@/components/site/Delivered";
+import { Capabilities } from "@/components/site/Capabilities";
+import { WhoWeHelp } from "@/components/site/WhoWeHelp";
+import { ShippedWork } from "@/components/site/ShippedWork";
+import { Concepts } from "@/components/site/Concepts";
+import { Pricing } from "@/components/site/Pricing";
+import { Support } from "@/components/site/Support";
 import { Process } from "@/components/site/Process";
 import { About } from "@/components/site/About";
 import { Contact } from "@/components/site/Contact";
@@ -19,8 +23,12 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Solutions />
-        <Delivered />
+        <Capabilities />
+        <WhoWeHelp />
+        <ShippedWork />
+        <Concepts />
+        <Pricing />
+        <Support />
         <Process />
         <About />
         <Contact />

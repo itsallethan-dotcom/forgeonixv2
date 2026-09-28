@@ -27,6 +27,8 @@ export type Solution = {
   problem: string;
   /** One short solution sentence. */
   solution: string;
+  /** One short outcome sentence — the value once it's in use. */
+  outcome: string;
   /** Whether this brand is a fictional demo or an approved real-client study. */
   fictional: boolean;
 };
@@ -40,6 +42,7 @@ export const SOLUTIONS: Solution[] = [
     headline: "Still using a clipboard?",
     problem: "A paper sign-in sheet hides the wait and loses walk-ins.",
     solution: "A live queue shows customers their place and barbers who's next.",
+    outcome: "Walk-ins can see the wait and staff always know who is next.",
     fictional: true,
   },
   {
@@ -50,26 +53,18 @@ export const SOLUTIONS: Solution[] = [
     headline: "Make every closing count.",
     problem: "Agent production sits in month-end spreadsheets nobody opens.",
     solution: "Turn closed deals into a live leaderboard your team actually checks.",
-    fictional: true,
-  },
-  {
-    id: "solea-nail-designer",
-    index: "03",
-    brand: "Solea Nail Designer",
-    kind: "Visual configurator",
-    headline: "Stop asking customers to imagine the result.",
-    problem: "Clients describe a design and hope the finished result matches.",
-    solution: "Let them build and preview the look before the appointment.",
+    outcome: "Standings update the moment a deal closes, so recognition is instant.",
     fictional: true,
   },
   {
     id: "minicrm",
-    index: "04",
+    index: "03",
     brand: "MiniCRM",
     kind: "Lead + client tracking",
     headline: "Sticky notes don't scale.",
     problem: "Leads and follow-ups live on notes and memory, so things slip.",
     solution: "One clear pipeline the whole business can see.",
+    outcome: "Every lead has a visible next step, so nothing falls through the cracks.",
     fictional: true,
   },
 ];

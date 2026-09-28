@@ -29,7 +29,7 @@ export function Process() {
   return (
     <Section id="process" connector className="border-t border-[var(--fx-line)]">
       <SectionHead
-        index="02"
+        index="07"
         label="How it works"
         titleId="process-title"
         title="Four steps, no ceremony"

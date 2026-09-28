@@ -22,7 +22,7 @@ const PREVIEWS: Record<string, ComponentType> = {
  * homepage, so there is no separate "full demo" affordance.
  */
 export function SolutionSection({ solution }: { solution: Solution }) {
-  const { id, index, brand, kind, headline, problem, solution: fix } = solution;
+  const { id, index, brand, kind, headline, problem, solution: fix, outcome } = solution;
   const Preview = PREVIEWS[id];
 
   return (
@@ -44,7 +44,12 @@ export function SolutionSection({ solution }: { solution: Solution }) {
         </Reveal>
 
         <Reveal delay={110}>
-          <p className="mt-1 text-[0.82rem] text-ink-muted">{brand}</p>
+          <p className="mt-1 flex flex-wrap items-center gap-2 text-[0.82rem] text-ink-muted">
+            {brand}
+            <span className="fx-mono rounded-[var(--fx-radius)] border border-[var(--fx-line)] px-1.5 py-0.5 text-[0.5rem] text-ink-faint">
+              Concept · fictional data
+            </span>
+          </p>
         </Reveal>
 
         <dl className="mt-6 space-y-5">
@@ -55,6 +60,10 @@ export function SolutionSection({ solution }: { solution: Solution }) {
           <Reveal delay={200} as="div">
             <dt className="fx-mono text-signal-soft">Solution</dt>
             <dd className="mt-2 text-[0.95rem] leading-relaxed text-ink-dim">{fix}</dd>
+          </Reveal>
+          <Reveal delay={240} as="div">
+            <dt className="fx-mono text-good">Outcome</dt>
+            <dd className="mt-2 text-[0.95rem] leading-relaxed text-ink-dim">{outcome}</dd>
           </Reveal>
         </dl>
       </div>

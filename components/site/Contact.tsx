@@ -26,7 +26,7 @@ export function Contact() {
 
       <div className="mx-auto max-w-3xl text-center">
         <Reveal className="flex justify-center">
-          <Eyebrow index="04">Contact</Eyebrow>
+          <Eyebrow index="09">Contact</Eyebrow>
         </Reveal>
 
         <Reveal delay={80}>

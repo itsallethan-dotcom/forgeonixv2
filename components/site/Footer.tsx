@@ -3,7 +3,9 @@ import { SOCIAL } from "@/content/social";
 
 const LINKS = [
   { href: "#solutions", label: "Solutions" },
-  { href: "#process", label: "Process" },
+  { href: "#work", label: "Work" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#support", label: "Support" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];

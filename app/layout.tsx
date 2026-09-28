@@ -58,13 +58,13 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.forgeonix.dev"),
-  title: "Forgeonix — Custom software and internal tools for small businesses",
+  title: "Forgeonix | Technology Solutions for Small Businesses",
   description:
-    "Forgeonix builds internal tools, dashboards, customer portals, tracking systems, automations, and business websites that fix real operational problems.",
+    "Forgeonix helps small businesses solve technology problems through custom software, automation, websites, and IT support.",
   openGraph: {
-    title: "Forgeonix",
+    title: "Forgeonix | Technology Solutions for Small Businesses",
     description:
-      "Internal tools, dashboards, portals, and automations built for how small businesses actually operate.",
+      "Forgeonix helps small businesses solve technology problems through custom software, automation, websites, and IT support.",
     url: "https://www.forgeonix.dev",
     siteName: "Forgeonix",
     type: "website",

@@ -21,7 +21,7 @@ export function Hero() {
           <span className="flex items-center gap-3">
             <Mark className="h-[26px] w-auto" title="Forgeonix" />
             <span className="fx-mono text-ink-muted">
-              Custom software for small businesses
+              Technology partner for small businesses
             </span>
           </span>
 
@@ -29,18 +29,23 @@ export function Hero() {
             id="hero-title"
             className="fx-display mt-6 text-[clamp(2.7rem,1.5rem+5.2vw,5.1rem)] text-ink"
           >
-            Software should fit your business.
+            Technology should fit your business.
             <span className="mt-1.5 block text-ink-dim">
               Not the other way around.
             </span>
           </h1>
 
+          <p className="fx-lede mt-6 max-w-2xl">
+            Forgeonix helps small businesses eliminate bottlenecks with custom
+            software, automation, websites, and practical technology solutions.
+          </p>
+
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Button href="#solutions" variant="primary">
-              See what it solves
+              Find a Solution
             </Button>
-            <Button href="#contact" variant="ghost">
-              Start a project
+            <Button href="#work" variant="ghost">
+              View Our Work
             </Button>
           </div>
         </div>
