@@ -42,7 +42,7 @@ export const PRICING: PriceTier[] = [
   {
     id: "automation",
     name: "Automation Solutions",
-    price: "$500",
+    price: "$750",
     description: "Remove repetitive work and connect your existing tools.",
     includes: [
       "Automated follow-ups",

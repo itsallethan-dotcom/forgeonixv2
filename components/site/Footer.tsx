@@ -1,13 +1,13 @@
+import Link from "next/link";
 import { Wordmark } from "@/components/ui/Mark";
 import { SOCIAL } from "@/content/social";
 
 const LINKS = [
-  { href: "#solutions", label: "Solutions" },
-  { href: "#work", label: "Work" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#support", label: "Support" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/work", label: "Work" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/support", label: "Support" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Footer() {
@@ -17,19 +17,19 @@ export function Footer() {
         <div>
           <Wordmark />
           <p className="mt-3 text-[0.8rem] text-ink-faint">
-            Custom systems for small businesses. Built by Ethan.
+            Custom software and technology support for small businesses.
           </p>
         </div>
 
         <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="rounded-sm text-[0.82rem] text-ink-muted transition-colors hover:text-ink-dim"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>

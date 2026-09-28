@@ -8,6 +8,8 @@ import {
   Fraunces,
 } from "next/font/google";
 import "./globals.css";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
 
 // Scoped product typefaces — each preview owns its inner voice, none belong to
 // the Forgeonix type system. Zilla Slab = Oak & Steel, Playfair Display =
@@ -84,7 +86,19 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} ${shop.variable} ${realty.variable} ${solea.variable}`}
     >
-      <body className="min-h-dvh">{children}</body>
+      <body className="flex min-h-dvh flex-col">
+        <a
+          href="#main"
+          className="fx-btn fx-btn--primary sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
+        >
+          Skip to content
+        </a>
+        <Nav />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }

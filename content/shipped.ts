@@ -23,9 +23,15 @@ export type CaseMedia =
 
 export type CaseStudy = {
   id: string;
+  /** URL slug — case study lives at /work/<slug>. */
+  slug: string;
   name: string;
   /** Short category label, e.g. "Custom CRM & operations". */
   kind: string;
+  /** One-sentence summary for cards and carousels. */
+  blurb: string;
+  /** Case-study page subtitle. */
+  subtitle: string;
   /** Give this build the strongest emphasis. */
   featured?: boolean;
   /** Case-study copy. Blackgate keeps a plain description instead. */
@@ -45,8 +51,13 @@ export type CaseStudy = {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: "causey-roofing-crm",
+    slug: "causey-roofing",
     name: "Causey Roofing CRM",
     kind: "Custom CRM & business operations system",
+    blurb:
+      "A custom CRM and business operations system built around a roofing contractor's real workflow.",
+    subtitle:
+      "A custom business operations system built around a roofing contractor's workflow.",
     featured: true,
     problem:
       "Customer information, leads, estimates, materials, and business workflows were difficult to manage through disconnected processes and generic tools.",
@@ -76,8 +87,13 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "blackgate-studios",
+    slug: "blackgate-studios",
     name: "Blackgate Studios",
     kind: "Studio website & content platform",
+    blurb:
+      "A custom portfolio and gallery website built to showcase a tattoo studio's work.",
+    subtitle:
+      "A custom portfolio and gallery website for a working tattoo studio.",
     description:
       "Professional tattoo studio website, portfolio platform, and content management system built for a working studio.",
     features: [
@@ -98,8 +114,13 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "solea-nails",
+    slug: "solea-nails",
     name: "Solea Nails",
     kind: "Brand website & interactive product designer",
+    blurb:
+      "A branded website and interactive nail designer built to help customers visualize custom press-on designs.",
+    subtitle:
+      "A branded website and interactive nail designer for custom press-on nails.",
     problem:
       "Solea needed a branded online presence that could do more than simply display products. Customers needed a better way to visualize custom press-on nail designs before ordering.",
     solution:

@@ -1,31 +1,35 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { Wordmark } from "@/components/ui/Mark";
 
 const LINKS = [
-  { href: "#solutions", label: "Solutions" },
-  { href: "#work", label: "Work" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#support", label: "Support" },
-  { href: "#contact", label: "Contact" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/work", label: "Work" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/support", label: "Support" },
+  { href: "/contact", label: "Contact" },
 ];
 
 /** Matches the `md` breakpoint (768px) where the full nav is shown. */
 const MOBILE_QUERY = "(max-width: 767.98px)";
 
+function isActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function Nav() {
+  const pathname = usePathname() || "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
-  // Hydration guard: the mobile menu button/panel must not render until after
-  // mount so SSR and first client render match. Intentional one-shot setState.
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
@@ -36,29 +40,13 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll spy over the sections the nav points at.
+  // Close the mobile sheet whenever the route changes.
   useEffect(() => {
-    const ids = LINKS.map((l) => l.href.slice(1));
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
-    if (!sections.length || typeof IntersectionObserver === "undefined") return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(false);
+  }, [pathname]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(`#${visible.target.id}`);
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.2, 0.6] },
-    );
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  // Track the breakpoint. The mobile menu (button + panel) only exists below it;
-  // crossing up to desktop force-closes so no lock can survive the resize.
+  // Track the breakpoint; crossing up to desktop force-closes the sheet.
   useEffect(() => {
     if (typeof matchMedia === "undefined") return;
     const mq = matchMedia(MOBILE_QUERY);
@@ -71,7 +59,7 @@ export function Nav() {
     return () => mq.removeEventListener("change", apply);
   }, []);
 
-  // Scroll lock is bound to an actually-open mobile panel, and always cleaned up.
+  // Scroll lock bound to an actually-open mobile panel.
   useEffect(() => {
     if (!(open && isMobile)) return;
     const prev = document.body.style.overflow;
@@ -92,7 +80,6 @@ export function Nav() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open, isMobile]);
 
-  // Final safety net: never leave the body locked if the component unmounts.
   useEffect(() => {
     return () => {
       document.body.style.overflow = "";
@@ -116,36 +103,31 @@ export function Nav() {
         }`}
       >
         <div className="fx-shell flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
-          <a
-            href="#top"
-            className="rounded-sm"
-            aria-label="Forgeonix — back to top"
-            onClick={() => setOpen(false)}
-          >
+          <Link href="/" className="rounded-sm" aria-label="Forgeonix — home">
             <Wordmark />
-          </a>
+          </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-            {LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                aria-current={active === link.href ? "true" : undefined}
-                className={`rounded-sm px-3 py-2 text-sm transition-colors ${
-                  active === link.href
-                    ? "text-ink"
-                    : "text-ink-muted hover:text-ink-dim"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-            <a href="#contact" className="fx-btn fx-btn--primary ml-3 !py-2 !px-4">
-              Start a project
-            </a>
+            {LINKS.map((link) => {
+              const active = isActive(pathname, link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-sm px-3 py-2 text-sm transition-colors ${
+                    active ? "text-ink" : "text-ink-muted hover:text-ink-dim"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+            <Link href="/contact" className="fx-btn fx-btn--primary ml-3 !py-2 !px-4">
+              Start a Project
+            </Link>
           </nav>
 
-          {/* Menu control exists only at mobile widths. */}
           {mounted && isMobile ? (
             <button
               ref={toggleRef}
@@ -161,8 +143,6 @@ export function Nav() {
         </div>
       </header>
 
-      {/* Mobile menu panel — portalled to <body> so no header stacking/overflow
-          context can hide or clip it. Rendered only when open on mobile. */}
       {panelOpen
         ? createPortal(
             <div
@@ -176,6 +156,7 @@ export function Nav() {
               <div
                 ref={panelRef}
                 className="fx-shell flex min-h-dvh flex-col pt-6 pb-10"
+                onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex h-16 items-center justify-between sm:h-[4.5rem]">
                   <Wordmark />
@@ -188,27 +169,20 @@ export function Nav() {
                   </button>
                 </div>
 
-                <nav
-                  aria-label="Primary mobile"
-                  className="mt-4 flex flex-col"
-                >
+                <nav aria-label="Primary mobile" className="mt-4 flex flex-col">
                   {LINKS.map((link) => (
-                    <a
+                    <Link
                       key={link.href}
                       href={link.href}
-                      onClick={close}
-                      className="border-b border-[var(--fx-line-faint)] py-4 text-lg text-ink-dim transition-colors last:border-0 hover:text-ink"
+                      aria-current={isActive(pathname, link.href) ? "page" : undefined}
+                      className="border-b border-[var(--fx-line-faint)] py-4 text-lg text-ink-dim transition-colors last:border-0 hover:text-ink aria-[current=page]:text-ink"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   ))}
-                  <a
-                    href="#contact"
-                    onClick={close}
-                    className="fx-btn fx-btn--primary mt-6 self-start"
-                  >
-                    Start a project
-                  </a>
+                  <Link href="/contact" className="fx-btn fx-btn--primary mt-6 self-start">
+                    Start a Project
+                  </Link>
                 </nav>
               </div>
             </div>,
