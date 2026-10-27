@@ -8,9 +8,9 @@ import { JsonLd } from "@/components/site/JsonLd";
 import { breadcrumb, services, pageMeta } from "@/content/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Solutions Built Around Your Business",
+  title: "Business Automation Services in Kentucky",
   description:
-    "Custom business systems, automation, websites and digital tools, and technology support — built around how your business actually operates.",
+    "Business automation and custom software for small businesses across Kentucky — automate lead follow-ups, reporting, data entry, approvals, and tool integrations.",
   path: "/solutions",
 });
 
@@ -33,11 +33,11 @@ const SOLUTIONS = [
     title: "Business Automation",
     body: "Remove repetitive work and connect the tools that should already be talking to each other.",
     examples: [
-      "Follow-ups",
-      "Notifications",
-      "Reports",
-      "Forms",
-      "Integrations",
+      "Lead follow-ups",
+      "Reporting",
+      "Data entry",
+      "Approval workflows",
+      "Software integrations",
       "AI-assisted workflows",
     ],
   },
@@ -67,6 +67,30 @@ const SOLUTIONS = [
   },
 ];
 
+// Practical automation examples — described as capabilities, not results.
+const AUTOMATION = [
+  {
+    term: "Lead follow-ups",
+    body: "New enquiries get an immediate, consistent response instead of sitting in an inbox until someone has time.",
+  },
+  {
+    term: "Reporting",
+    body: "The numbers you check every week pulled together automatically, rather than rebuilt by hand in a spreadsheet.",
+  },
+  {
+    term: "Data entry",
+    body: "Information captured once and pushed everywhere it needs to go, so no one retypes the same record twice.",
+  },
+  {
+    term: "Approval workflows",
+    body: "Requests routed to the right person, with a clear record of what was approved and when.",
+  },
+  {
+    term: "Software integrations",
+    body: "Scheduling, billing, and the other tools you already use kept in sync instead of copied between tabs.",
+  },
+];
+
 export default function SolutionsPage() {
   return (
     <>
@@ -83,8 +107,8 @@ export default function SolutionsPage() {
       />
       <PageHero
         eyebrow="Solutions"
-        title="Solutions Built Around Your Business"
-        lede="Forgeonix builds and supports the technology small businesses actually need — focused on outcomes, not tooling for its own sake."
+        title="Business automation and custom software for Kentucky businesses"
+        lede="Forgeonix builds business automation and custom software — plus websites and practical IT support — for small businesses across Kentucky, focused on removing operational bottlenecks rather than tooling for its own sake."
       />
 
       <section className="fx-section" aria-label="Service detail">
@@ -115,14 +139,109 @@ export default function SolutionsPage() {
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
 
-          <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-[var(--fx-line)] pt-10">
-            <Button href="/contact" variant="primary">
-              Start a Project
-            </Button>
-            <Link href="/work" className="fx-btn fx-btn--ghost">
-              See shipped work
-            </Link>
+      {/* Business automation deep-dive — the page's focus */}
+      <section
+        className="fx-section border-t border-[var(--fx-line)] bg-[var(--fx-shell)]"
+        aria-labelledby="automation-detail"
+      >
+        <Container>
+          <div className="max-w-2xl">
+            <Reveal>
+              <span className="fx-mono text-ink-muted">Business automation</span>
+            </Reveal>
+            <Reveal delay={70}>
+              <h2 id="automation-detail" className="fx-h2 mt-4 text-ink">
+                Business automation, in practice
+              </h2>
+            </Reveal>
+            <Reveal delay={130}>
+              <p className="fx-lede mt-4">
+                Most small businesses lose hours every week to the same manual
+                steps. Business process automation connects the tools you already
+                use and takes that repetitive work off your team&apos;s plate.
+                When one person is the only one who knows how a process runs,
+                that&apos;s usually a good place to start.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {AUTOMATION.map((item, i) => (
+              <Reveal key={item.term} delay={i * 60}>
+                <article className="fx-panel fx-ticks h-full p-6">
+                  <h3 className="fx-h3 text-[1.02rem] text-ink">{item.term}</h3>
+                  <p className="mt-2 text-[0.88rem] leading-relaxed text-ink-muted">
+                    {item.body}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={120}>
+            <p className="mt-8 max-w-2xl text-[0.92rem] leading-relaxed text-ink-dim">
+              Workflow automation usually pairs with a custom system that holds
+              the data. For a Kentucky example, see how we built a custom CRM and
+              operations system for a roofing contractor in the{" "}
+              <Link
+                href="/work/causey-roofing"
+                className="text-signal-soft underline-offset-4 hover:underline"
+              >
+                Causey Roofing case study
+              </Link>
+              .
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Service area — honest, no fabricated offices */}
+      <section
+        className="fx-section border-t border-[var(--fx-line)]"
+        aria-labelledby="service-area"
+      >
+        <Container>
+          <div className="max-w-2xl">
+            <h2 id="service-area" className="fx-h2 text-ink">
+              Working with Kentucky businesses
+            </h2>
+            <p className="fx-lede mt-4">
+              Based in Richmond, Kentucky, Forgeonix works with businesses
+              throughout Kentucky and neighboring states, delivering custom
+              software and automation solutions remotely.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Strengthened CTA — invite the visitor to describe a real problem */}
+      <section
+        className="fx-section border-t border-[var(--fx-line)] bg-[var(--fx-shell)]"
+        aria-labelledby="solutions-cta"
+      >
+        <Container>
+          <div className="max-w-2xl">
+            <h2 id="solutions-cta" className="fx-h2 text-ink">
+              Tell us where your business is losing time.
+            </h2>
+            <p className="fx-lede mt-4">
+              Describe the process that keeps causing problems — the manual step,
+              the thing only one person knows how to do, the tools that
+              don&apos;t talk to each other. We&apos;ll tell you whether
+              automation or custom software is the right fix, or if something
+              simpler will do.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button href="/contact" variant="primary">
+                Describe your problem
+              </Button>
+              <Link href="/work" className="fx-btn fx-btn--ghost">
+                See shipped work
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
