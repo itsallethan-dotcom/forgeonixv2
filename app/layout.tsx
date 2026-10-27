@@ -10,6 +10,8 @@ import {
 import "./globals.css";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { JsonLd } from "@/components/site/JsonLd";
+import { SITE, siteGraph } from "@/content/seo";
 
 // Scoped product typefaces — each preview owns its inner voice, none belong to
 // the Forgeonix type system. Zilla Slab = Oak & Steel, Playfair Display =
@@ -58,18 +60,30 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const HOME_TITLE =
+  "Forgeonix — Custom Software, Automation & IT Support for Kentucky Small Businesses";
+const HOME_DESCRIPTION =
+  "Kentucky technology company building custom software, CRM systems, automation, and websites — with practical IT support — for small businesses in Richmond, Lexington, and statewide.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.forgeonix.dev"),
-  title: "Forgeonix | Technology Solutions for Small Businesses",
-  description:
-    "Forgeonix helps small businesses solve technology problems through custom software, automation, websites, and IT support.",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: HOME_TITLE,
+    template: "%s | Forgeonix",
+  },
+  description: HOME_DESCRIPTION,
   openGraph: {
-    title: "Forgeonix | Technology Solutions for Small Businesses",
-    description:
-      "Forgeonix helps small businesses solve technology problems through custom software, automation, websites, and IT support.",
-    url: "https://www.forgeonix.dev",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: SITE.url,
     siteName: "Forgeonix",
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
   },
 };
 
@@ -87,6 +101,7 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable} ${shop.variable} ${realty.variable} ${solea.variable}`}
     >
       <body className="flex min-h-dvh flex-col">
+        <JsonLd data={siteGraph()} />
         <a
           href="#main"
           className="fx-btn fx-btn--primary sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"

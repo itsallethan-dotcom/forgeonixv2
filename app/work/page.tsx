@@ -7,16 +7,25 @@ import { CaseVisual } from "@/components/site/CaseVisual";
 import { SolutionSection } from "@/components/solutions/SolutionSection";
 import { CASE_STUDIES } from "@/content/shipped";
 import { SOLUTIONS } from "@/content/solutions";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumb, pageMeta } from "@/content/seo";
 
-export const metadata: Metadata = {
-  title: "Work | Forgeonix",
+export const metadata: Metadata = pageMeta({
+  title: "Work",
   description:
     "Shipped client work — Causey Roofing CRM, Blackgate Studios, and Solea Nails — plus interactive concept demos built to show what these systems feel like.",
-};
+  path: "/work",
+});
 
 export default function WorkPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumb([
+          { name: "Home", path: "/" },
+          { name: "Work", path: "/work" },
+        ])}
+      />
       <PageHero
         eyebrow="Work"
         title="Work we've shipped."

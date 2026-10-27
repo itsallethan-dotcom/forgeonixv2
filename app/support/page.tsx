@@ -5,16 +5,34 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { SUPPORT_PLANS, SUPPORT_SCOPE } from "@/content/support";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumb, services, pageMeta } from "@/content/seo";
 
-export const metadata: Metadata = {
-  title: "Your Technology Partner | Forgeonix",
+export const metadata: Metadata = pageMeta({
+  title: "Your Technology Partner",
   description:
     "Ongoing technology support for small businesses — maintenance, troubleshooting, minor changes, and guidance, with clear scope and no unlimited promises.",
-};
+  path: "/support",
+});
 
 export default function SupportPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumb([
+            { name: "Home", path: "/" },
+            { name: "Support", path: "/support" },
+          ]),
+          ...services([
+            {
+              name: "Technology support",
+              description:
+                "Ongoing maintenance, troubleshooting, minor changes, and technology guidance for small businesses — with clear scope.",
+            },
+          ]),
+        ]}
+      />
       <PageHero
         eyebrow="Ongoing support"
         title="Your Technology Partner"

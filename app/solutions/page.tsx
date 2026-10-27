@@ -4,12 +4,15 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumb, services, pageMeta } from "@/content/seo";
 
-export const metadata: Metadata = {
-  title: "Solutions Built Around Your Business | Forgeonix",
+export const metadata: Metadata = pageMeta({
+  title: "Solutions Built Around Your Business",
   description:
     "Custom business systems, automation, websites and digital tools, and technology support — built around how your business actually operates.",
-};
+  path: "/solutions",
+});
 
 const SOLUTIONS = [
   {
@@ -67,6 +70,17 @@ const SOLUTIONS = [
 export default function SolutionsPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumb([
+            { name: "Home", path: "/" },
+            { name: "Solutions", path: "/solutions" },
+          ]),
+          ...services(
+            SOLUTIONS.map((s) => ({ name: s.title, description: s.body })),
+          ),
+        ]}
+      />
       <PageHero
         eyebrow="Solutions"
         title="Solutions Built Around Your Business"

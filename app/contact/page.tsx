@@ -3,18 +3,27 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/site/PageHero";
 import { ContactForm } from "@/components/site/ContactForm";
 import { SOCIAL } from "@/content/social";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumb, pageMeta } from "@/content/seo";
 
 const EMAIL = "ethan@forgeonix.dev";
 
-export const metadata: Metadata = {
-  title: "Contact | Forgeonix",
+export const metadata: Metadata = pageMeta({
+  title: "Contact",
   description:
     "Tell Forgeonix what's slowing your business down. Start a project or ask a question about custom software, automation, websites, or technology support.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumb([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
       <PageHero
         eyebrow="Contact"
         title="Start a project."

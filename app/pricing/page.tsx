@@ -5,12 +5,15 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { PRICING } from "@/content/pricing";
 import { SUPPORT_PLANS, SUPPORT_SCOPE } from "@/content/support";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumb, pageMeta } from "@/content/seo";
 
-export const metadata: Metadata = {
-  title: "Pricing | Forgeonix",
+export const metadata: Metadata = pageMeta({
+  title: "Pricing",
   description:
     "Transparent starting prices for websites, custom business systems, automation, and technology support, plus ongoing monthly support plans.",
-};
+  path: "/pricing",
+});
 
 const FACTORS = [
   "Scope",
@@ -26,6 +29,12 @@ const FACTORS = [
 export default function PricingPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumb([
+          { name: "Home", path: "/" },
+          { name: "Pricing", path: "/pricing" },
+        ])}
+      />
       <PageHero
         eyebrow="Pricing"
         title="Pricing"

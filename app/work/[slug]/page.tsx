@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { SiteFrame } from "@/components/site/SiteFrame";
 import { ShotFrame } from "@/components/site/ShotFrame";
 import { CASE_STUDIES, type CaseStudy } from "@/content/shipped";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumb, caseStudy, pageMeta } from "@/content/seo";
 
 type Params = { slug: string };
 
@@ -22,11 +24,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const study = CASE_STUDIES.find((c) => c.slug === slug);
-  if (!study) return { title: "Case study | Forgeonix" };
-  return {
-    title: `${study.name} | Forgeonix`,
+  if (!study) return { title: "Case study" };
+  return pageMeta({
+    title: study.name,
     description: study.subtitle,
-  };
+    path: `/work/${study.slug}`,
+  });
 }
 
 function Media({ study }: { study: CaseStudy }) {
@@ -46,6 +49,23 @@ export default async function CaseStudyPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumb([
+            { name: "Home", path: "/" },
+            { name: "Work", path: "/work" },
+            { name: study.name, path: `/work/${study.slug}` },
+          ]),
+          caseStudy({
+            name: study.name,
+            description: study.subtitle,
+            about: study.kind,
+            slug: study.slug,
+            features: study.features,
+            liveUrl: study.media.kind === "live" ? study.media.href : undefined,
+          }),
+        ]}
+      />
       {/* Header */}
       <section className="fx-grid-bg border-b border-[var(--fx-line)] pt-28 pb-14 sm:pt-32 sm:pb-16">
         <Container>
