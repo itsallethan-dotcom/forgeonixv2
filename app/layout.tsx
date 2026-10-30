@@ -11,6 +11,7 @@ import "./globals.css";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
+import { AttributionCapture } from "@/components/site/AttributionCapture";
 import { SITE, siteGraph } from "@/content/seo";
 
 // Scoped product typefaces — each preview owns its inner voice, none belong to
@@ -102,6 +103,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-dvh flex-col">
         <JsonLd data={siteGraph()} />
+        <AttributionCapture />
         <a
           href="#main"
           className="fx-btn fx-btn--primary sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
